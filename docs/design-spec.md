@@ -1,5 +1,7 @@
 # First Try Or Tenth -  Design document
 
+```TODO add driving category entity and functionality```
+
 ## 1. Project Overview
 A web application for the management of the day-to-day activities of a private driving school.
 
