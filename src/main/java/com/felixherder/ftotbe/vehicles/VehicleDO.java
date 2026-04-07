@@ -12,7 +12,7 @@ import java.time.Year;
 import static jakarta.persistence.GenerationType.UUID;
 
 @Data
-@Entity(name = "vehicle")
+@Entity(name = "vehicles")
 public class VehicleDO {
     @Id
     @GeneratedValue(strategy = UUID)

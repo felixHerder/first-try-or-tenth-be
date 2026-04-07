@@ -1,4 +1,4 @@
-INSERT INTO vehicle (
+INSERT INTO vehicles (
     uuid,
     model,
     make,
