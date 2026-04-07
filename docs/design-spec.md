@@ -1,7 +1,5 @@
 # First Try Or Tenth -  Design document
 
-```TODO add driving category entity and functionality```
-
 ## 1. Project Overview
 A web application for the management of the day-to-day activities of a private driving school.
 
@@ -29,10 +27,12 @@ An admin web application that allows users to handle everything related to a dri
 - Table vehicles
 - Table trainees
 - Table driving sessions
+- Table profiles
 - A driving instructor can have multiple vehicles, multiple trainees and multiple sessions 
 - A vehicle can have multiple driving instructors, multiple trainees, and multiple sessions
 - A trainee can have one driving instructor, one vehicle and multiple driving sessions
 - A driving session can have one instructor, one vehicle and one trainee
+- A driving instructor or a trainee can have one profile
 
 ## 4. API Endpoints
 ### Users
