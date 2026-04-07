@@ -1,7 +1,7 @@
 services:
   db:
     image: 'postgres'
-    container_name: psql-dev-db
+    container_name: ftot-psql-dev-db
     environment:
       - 'POSTGRES_PASSWORD=$DB_PASSWORD'
     ports:
