@@ -1,4 +1,4 @@
-package com.felixherder.firsttryortenthbe;
+package com.felixherder.ftotbe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

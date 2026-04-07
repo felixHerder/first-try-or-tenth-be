@@ -1,4 +1,4 @@
-package com.felixherder.firsttryortenthbe.vehicles;
+package com.felixherder.ftotbe.vehicles;
 
 import lombok.RequiredArgsConstructor;
 

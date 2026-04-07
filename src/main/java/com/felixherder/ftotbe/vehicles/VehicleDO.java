@@ -1,6 +1,5 @@
-package com.felixherder.firsttryortenthbe.vehicles;
+package com.felixherder.ftotbe.vehicles;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,4 +41,6 @@ public class VehicleDO {
 
     @Column(nullable = false)
     private int transmissionTypeId;
+
+    private String imageUrl;
 }
