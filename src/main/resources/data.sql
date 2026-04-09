@@ -1,37 +1,60 @@
-INSERT INTO vehicles (
-    uuid,
-    model,
-    make,
-    year,
-    license_plate,
-    color,
-    engine_type_id,
-    fuel_type_id,
-    transmission_type_id,
-    image_url,
-    created_at,
-    edited_at
-) VALUES
--- 1. Electric Tesla Model 3
-('550e8400-e29b-41d4-a716-446655440000', 'Model 3', 'Tesla', 2023, 'EL-888-TX', 'White', 30, 30, 10, 'https://images.example.com/tesla3.jpg',
- '2023-01-15 08:22:10', '2023-05-12 14:10:05'),
+INSERT INTO profiles (uuid, created_at, edited_at, name, phone_number, address, image_url)
+VALUES ('58217387-9b24-4f51-8742-19e342790100', '2026-01-05 09:15:22Z', '2026-01-05 09:15:22Z', 'Marcus Miller',
+        '555-0199', '101 Alpine Way', 'http://img.local/p1.png'),
+       ('9d3e8612-429a-4e2a-9f8a-552319283741', '2026-01-06 10:20:00Z', '2026-01-06 10:20:00Z', 'Sarah Jenkins',
+        '555-0288', '202 Forest Rd', 'http://img.local/p2.png'),
+       ('7f2a11b3-d4e5-4f6c-8a90-1234567890ab', '2026-01-10 14:05:10Z', '2026-01-10 14:05:10Z', 'David Chen',
+        '555-0377', '303 Harbor Dr', 'http://img.local/p3.png'),
+       ('22334455-6677-8899-aabb-ccddeeff0011', '2026-01-15 11:30:45Z', '2026-01-15 11:30:45Z', 'Emma Wilson',
+        '555-0466', '404 Skyline Blvd', 'http://img.local/p4.png'),
+       ('ffeeddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Lucas Hedges',
+        '555-0555', '505 Meadow Ln', 'http://img.local/p5.png');
 
--- 2. Hybrid Toyota RAV4
-('672e8400-e29b-41d4-a716-446655440001', 'RAV4', 'Toyota', 2022, 'HB-452-TY', 'Silver', 20, 10, 10, 'https://images.example.com/rav4.jpg',
- '2023-02-28 11:45:30', '2023-02-28 11:45:30'),
+INSERT INTO vehicles (uuid, created_at, edited_at, make, model, year, license_plate, color, engine_type_id,
+                      fuel_type_id, transmission_type_id)
+VALUES
+('a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d', '2026-01-01 08:00:00Z', '2026-01-01 08:00:00Z', 'Volkswagen', 'Golf GTI', 2021,
+ 'WOB-VW12', 'Tornado Red', 10, 10, 20),
+('b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e', '2026-01-01 09:00:00Z', '2026-01-01 09:00:00Z', 'BMW', '320d', 2022,
+ 'M-XY-554', 'Jet Black', 10, 20, 10),
+('c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f', '2026-01-02 10:30:00Z', '2026-01-02 10:30:00Z', 'Toyota', 'Prius', 2023,
+ '7HBY-990', 'Pearl White', 20, 10, 10),
+('d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a', '2026-01-03 12:45:00Z', '2026-01-03 12:45:00Z', 'Volkswagen', 'ID.4', 2024,
+ 'WOB-ID40', 'Blue Dusk', 30, 30, 10),
+('e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b', '2026-01-04 15:20:00Z', '2026-01-04 15:20:00Z', 'Honda', 'Civic', 2022,
+ 'HND-2022', 'Modern Steel', 10, 10, 10);
 
--- 3. Internal Combustion Ford F-150
-('783e8400-e29b-41d4-a716-446655440002', 'F-150', 'Ford', 2021, 'RD-112-FD', 'Black', 10, 10, 10, 'https://images.example.com/f150.jpg',
- '2022-11-05 09:15:00', '2023-12-01 18:30:22'),
+INSERT INTO instructors (uuid, created_at, edited_at, profile_uuid)
+VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', '2026-01-05 10:00:00Z', '2026-01-05 10:00:00Z',
+        '58217387-9b24-4f51-8742-19e342790100'),
+       ('22bb33cc-44dd-55ee-66ff-77889900aa11', '2026-01-06 11:00:00Z', '2026-01-06 11:00:00Z',
+        '9d3e8612-429a-4e2a-9f8a-552319283741');
 
--- 4. Electric Rivian R1T
-('894e8400-e29b-41d4-a716-446655440003', 'R1T', 'Rivian', 2024, 'RV-900-RT', 'Blue', 30, 30, 10, 'https://images.example.com/r1t.jpg',
- '2024-03-10 16:40:12', '2024-03-15 10:05:45'),
+INSERT INTO instructors_vehicles (instructor_uuid, vehicle_uuid)
+VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'd4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a'),
+       ('22bb33cc-44dd-55ee-66ff-77889900aa11', 'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e');
 
--- 5. Diesel Volkswagen Golf (Manual)
-('905e8400-e29b-41d4-a716-446655440004', 'Golf', 'Volkswagen', 2019, 'DE-773-VW', 'Red', 10, 20, 20, 'https://images.example.com/golf.jpg',
- '2023-06-20 13:12:55', '2023-07-02 09:00:00'),
+INSERT INTO trainees (uuid, created_at, edited_at, profile_uuid, instructor_uuid, vehicle_uuid)
+VALUES ('33cc44dd-55ee-66ff-7788-9900aa11bb22', '2026-01-11 09:00:00Z', '2026-01-11 09:00:00Z',
+        '7f2a11b3-d4e5-4f6c-8a90-1234567890ab', '11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('44dd55ee-66ff-7788-9900-aa11bb22cc33', '2026-01-16 14:20:00Z', '2026-01-16 14:20:00Z',
+        '22334455-6677-8899-aabb-ccddeeff0011', '11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'd4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a'),
+       ('55ee66ff-7788-9900-aa11-bb22cc33dd44', '2026-01-21 10:15:00Z', '2026-01-21 10:15:00Z',
+        'ffeeddcc-bbaa-9988-7766-554433221100', '22bb33cc-44dd-55ee-66ff-77889900aa11',
+        'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e');
 
--- 6. Hybrid Honda CR-V
-('016e8400-e29b-41d4-a716-446655440005', 'CR-V', 'Honda', 2023, 'HN-221-CR', 'Grey', 20, 10, 10, NULL,
- '2023-09-14 10:30:00', '2023-09-14 10:30:00');
+INSERT INTO sessions (uuid, created_at, edited_at, scheduled_at, trainee_uuid, instructor_uuid, vehicle_uuid)
+VALUES ('66ff7788-9900-aa11-bb22-cc33dd44ee55', '2026-02-01 08:30:00Z', '2026-02-01 08:30:00Z', '2026-04-10 09:00:00Z',
+        '33cc44dd-55ee-66ff-7788-9900aa11bb22', '11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('77889900-aa11-bb22-cc33-dd44ee55ff66', '2026-02-02 11:00:00Z', '2026-02-02 11:00:00Z', '2026-04-11 13:00:00Z',
+        '44dd55ee-66ff-7788-9900-aa11bb22cc33', '11aa22bb-33cc-44dd-55ee-66ff77889900',
+        'd4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a'),
+       ('889900aa-11bb-22cc-33dd-44ee55ff6677', '2026-02-03 15:45:00Z', '2026-02-03 15:45:00Z', '2026-04-12 10:30:00Z',
+        '55ee66ff-7788-9900-aa11-bb22cc33dd44', '22bb33cc-44dd-55ee-66ff-77889900aa11',
+        'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e');

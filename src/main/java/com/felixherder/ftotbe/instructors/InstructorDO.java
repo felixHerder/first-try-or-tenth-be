@@ -17,7 +17,6 @@ import java.util.Set;
 @ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity(name = "instructors")
 public class InstructorDO extends BaseDO {
-
     @EqualsAndHashCode.Include
     @ToString.Include
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
