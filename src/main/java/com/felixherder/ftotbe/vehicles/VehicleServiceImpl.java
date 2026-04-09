@@ -21,7 +21,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public List<VehicleDTO> getAll() {
         var vehicles = vehicleRepository.findAll();
-        return vehicleMapper.mapDoToDto(vehicles);
+        return vehicleMapper.mapDoListToDtoList(vehicles);
     }
 
     @Override

@@ -26,12 +26,7 @@ public class VehicleMapperImpl implements VehicleMapper {
     }
 
     @Override
-    public List<VehicleDTO> mapDoToDto(List<VehicleDO> vehicleDOs) {
+    public List<VehicleDTO> mapDoListToDtoList(List<VehicleDO> vehicleDOs) {
         return vehicleDOs.stream().map(this::mapDoToDto).toList();
-    }
-
-    @Override
-    public List<VehicleDO> mapDtoToDo(List<VehicleDTO> vehicleDTOs) {
-        return vehicleDTOs.stream().map(this::mapDtoToDo).toList();
     }
 }
