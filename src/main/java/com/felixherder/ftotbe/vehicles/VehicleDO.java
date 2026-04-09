@@ -1,23 +1,26 @@
 package com.felixherder.ftotbe.vehicles;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Data;
+import com.felixherder.ftotbe.instructors.InstructorDO;
+import com.felixherder.ftotbe.session.SessionDO;
+import com.felixherder.ftotbe.common.BaseDO;
+import com.felixherder.ftotbe.trainees.TraineeDO;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
 import java.time.Year;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-import static jakarta.persistence.GenerationType.UUID;
-
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Entity(name = "vehicles")
-public class VehicleDO {
-    @Id
-    @GeneratedValue(strategy = UUID)
-    private String uuid;
-
+public class VehicleDO extends BaseDO {
     @Column(nullable = false)
     private String model;
 
@@ -43,4 +46,20 @@ public class VehicleDO {
     private int transmissionTypeId;
 
     private String imageUrl;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "vehicles")
+    private Set<InstructorDO> instructors = new LinkedHashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TraineeDO> trainees = new LinkedHashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "vehicle")
+    private Set<SessionDO> session = new LinkedHashSet<>();
+
 }
