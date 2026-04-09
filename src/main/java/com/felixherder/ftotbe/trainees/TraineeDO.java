@@ -20,7 +20,7 @@ public class TraineeDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="profile_uuid", referencedColumnName = "uuid")
+    @JoinColumn(name="profile_uuid")
     private ProfileDO profile;
 
     @ManyToOne(fetch = FetchType.LAZY)

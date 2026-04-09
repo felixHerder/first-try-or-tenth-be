@@ -21,7 +21,7 @@ public class InstructorDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "profile_uuid", referencedColumnName = "uuid")
+    @JoinColumn(name = "profile_uuid")
     private ProfileDO profile;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
