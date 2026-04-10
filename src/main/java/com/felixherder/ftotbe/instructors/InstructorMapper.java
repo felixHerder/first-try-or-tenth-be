@@ -1,11 +1,10 @@
 package com.felixherder.ftotbe.instructors;
 
-import java.util.List;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueMappingStrategy;
 
+@Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface InstructorMapper {
-    InstructorDTO mapDoToDto(final InstructorDO instructorDO);
-
-    InstructorDO mapDtoToDo(final InstructorDTO instructorDTO);
-
-    List<InstructorDTO> mapDoListToDtoList(final List<InstructorDO> instructorDOs);
+    InstructorSummaryDTO toSummaryDto(final InstructorDO instructorDO);
+    InstructorDetailsDTO toDetailsDto(final InstructorDO instructorDO);
 }

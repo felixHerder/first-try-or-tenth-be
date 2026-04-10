@@ -18,15 +18,15 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public List<InstructorDTO> getAll() {
+    public List<InstructorSummaryDTO> getAll() {
         var instructors = instructorRepository.findAll();
-        return instructorMapper.mapDoListToDtoList(instructors);
+        return instructors.stream().map(instructorMapper::toSummaryDto).toList();
     }
 
     @Override
-    public InstructorDTO getByUuid(String uuid) {
+    public InstructorDetailsDTO getByUuid(String uuid) {
         return instructorRepository.findById(uuid)
-                .map(instructorMapper::mapDoToDto)
+                .map(instructorMapper::toDetailsDto)
                 .orElseThrow(()-> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
 }

@@ -17,12 +17,12 @@ public class InstructorController {
     }
 
     @GetMapping()
-    List<InstructorDTO> getAll() {
+    List<InstructorSummaryDTO> getAll() {
         return instructorService.getAll();
     }
 
     @GetMapping("/{uuid}")
-    InstructorDTO getDetails(@PathVariable String uuid) {
+    InstructorDetailsDTO getDetails(@PathVariable String uuid) {
         return instructorService.getByUuid(uuid);
     }
 }

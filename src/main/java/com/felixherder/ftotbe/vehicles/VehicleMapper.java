@@ -1,9 +1,10 @@
 package com.felixherder.ftotbe.vehicles;
 
-import java.util.List;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueMappingStrategy;
 
+@Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface VehicleMapper {
-    VehicleDTO mapDoToDto(final VehicleDO vehicleDO);
-    VehicleDO mapDtoToDo(final VehicleDTO vehicleDTO);
-    List<VehicleDTO> mapDoListToDtoList(final List<VehicleDO> vehicleDOs);
+    VehicleSummaryDTO toSummaryDto (final VehicleDO vehicleDO);
+    VehicleDetailsDTO toDetailsDto (final VehicleDO vehicleDO);
 }

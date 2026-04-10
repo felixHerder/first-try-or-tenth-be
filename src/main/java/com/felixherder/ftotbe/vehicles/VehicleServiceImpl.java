@@ -19,15 +19,15 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public List<VehicleDTO> getAll() {
+    public List<VehicleSummaryDTO> getAll() {
         var vehicles = vehicleRepository.findAll();
-        return vehicleMapper.mapDoListToDtoList(vehicles);
+        return vehicles.stream().map(vehicleMapper::toSummaryDto).toList();
     }
 
     @Override
-    public VehicleDTO getByUuid(String uuid) {
+    public VehicleDetailsDTO getByUuid(String uuid) {
         return vehicleRepository.findById(uuid)
-                .map(vehicleMapper::mapDoToDto)
+                .map(vehicleMapper::toDetailsDto)
                 .orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
     }
 }
