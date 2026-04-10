@@ -1,6 +1,7 @@
 package com.felixherder.ftotbe.instructors;
 
 import com.felixherder.ftotbe.profiles.ProfileDTO;
+import com.felixherder.ftotbe.sessions.SessionSummaryDTO;
 import com.felixherder.ftotbe.trainees.TraineeSummaryDTO;
 import com.felixherder.ftotbe.vehicles.VehicleSummaryDTO;
 
@@ -10,7 +11,7 @@ public record InstructorDetailsDTO(
         String uuid,
         ProfileDTO profile,
         Set<VehicleSummaryDTO> vehicles,
-        Set<TraineeSummaryDTO> trainees
-//        Set<SessionDO> sessions
+        Set<TraineeSummaryDTO> trainees,
+        Set<SessionSummaryDTO> sessions
 ) {
 }
