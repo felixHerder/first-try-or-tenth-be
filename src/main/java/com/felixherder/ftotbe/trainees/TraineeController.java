@@ -17,12 +17,12 @@ public class TraineeController {
     }
 
     @GetMapping
-    List<TraineeSummaryDTO> getAll() {
+    public List<TraineeSummaryDTO> getAll() {
         return traineeService.getAll();
     }
 
     @GetMapping("/{uuid}")
-    TraineeDetailsDTO getDetails(@PathVariable String uuid) {
+    public TraineeDetailsDTO getDetails(@PathVariable String uuid) {
         return traineeService.getByUuid(uuid);
     }
 }

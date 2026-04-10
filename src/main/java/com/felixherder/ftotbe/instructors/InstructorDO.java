@@ -1,7 +1,7 @@
 package com.felixherder.ftotbe.instructors;
 
 import com.felixherder.ftotbe.profiles.ProfileDO;
-import com.felixherder.ftotbe.session.SessionDO;
+import com.felixherder.ftotbe.sessions.SessionDO;
 import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.trainees.TraineeDO;
 import com.felixherder.ftotbe.vehicles.VehicleDO;

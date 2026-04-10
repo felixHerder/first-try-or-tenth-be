@@ -19,12 +19,12 @@ public class VehicleController {
     }
 
     @GetMapping
-    List<VehicleSummaryDTO> getAll() {
+    public List<VehicleSummaryDTO> getAll() {
         return vehicleService.getAll();
     }
 
     @GetMapping("/{uuid}")
-    VehicleDetailsDTO getById(@PathVariable String uuid) {
+    public VehicleDetailsDTO getById(@PathVariable String uuid) {
         return vehicleService.getByUuid(uuid);
     }
 }

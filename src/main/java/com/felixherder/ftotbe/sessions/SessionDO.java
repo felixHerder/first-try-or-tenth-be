@@ -1,10 +1,13 @@
-package com.felixherder.ftotbe.session;
+package com.felixherder.ftotbe.sessions;
 
-import com.felixherder.ftotbe.instructors.InstructorDO;
 import com.felixherder.ftotbe.common.BaseDO;
+import com.felixherder.ftotbe.instructors.InstructorDO;
 import com.felixherder.ftotbe.trainees.TraineeDO;
 import com.felixherder.ftotbe.vehicles.VehicleDO;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +21,6 @@ import java.time.ZonedDateTime;
 @ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity(name = "sessions")
 public class SessionDO extends BaseDO {
-
     @EqualsAndHashCode.Include
     @ToString.Include
     @Column(nullable = false)
@@ -32,5 +34,4 @@ public class SessionDO extends BaseDO {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleDO vehicle;
-
 }

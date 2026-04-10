@@ -1,15 +1,14 @@
 package com.felixherder.ftotbe.vehicles;
 
-import com.felixherder.ftotbe.instructors.InstructorDO;
-import com.felixherder.ftotbe.session.SessionDO;
 import com.felixherder.ftotbe.common.BaseDO;
+import com.felixherder.ftotbe.instructors.InstructorDO;
+import com.felixherder.ftotbe.sessions.SessionDO;
 import com.felixherder.ftotbe.trainees.TraineeDO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 
 import java.time.Year;
 import java.util.LinkedHashSet;
