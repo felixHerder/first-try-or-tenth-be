@@ -10,19 +10,20 @@ VALUES ('58217387-9b24-4f51-8742-19e342790100', '2026-01-05 09:15:22Z', '2026-01
        ('ffeeddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Lucas Hedges',
         '555-0555', '505 Meadow Ln', 'http://img.local/p5.png');
 
-INSERT INTO vehicles (uuid, created_at, edited_at, make, model, year, license_plate, color, engine_type_id,
-                      fuel_type_id, transmission_type_id)
-VALUES
-('a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d', '2026-01-01 08:00:00Z', '2026-01-01 08:00:00Z', 'Volkswagen', 'Golf GTI', 2021,
- 'WOB-VW12', 'Tornado Red', 10, 10, 20),
-('b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e', '2026-01-01 09:00:00Z', '2026-01-01 09:00:00Z', 'BMW', '320d', 2022,
- 'M-XY-554', 'Jet Black', 10, 20, 10),
-('c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f', '2026-01-02 10:30:00Z', '2026-01-02 10:30:00Z', 'Toyota', 'Prius', 2023,
- '7HBY-990', 'Pearl White', 20, 10, 10),
-('d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a', '2026-01-03 12:45:00Z', '2026-01-03 12:45:00Z', 'Volkswagen', 'ID.4', 2024,
- 'WOB-ID40', 'Blue Dusk', 30, 30, 10),
-('e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b', '2026-01-04 15:20:00Z', '2026-01-04 15:20:00Z', 'Honda', 'Civic', 2022,
- 'HND-2022', 'Modern Steel', 10, 10, 10);
+INSERT INTO vehicles (uuid, created_at, edited_at, make, model, year, license_plate, color, engine_type,
+                      fuel_type, transmission_type)
+VALUES ('a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d', '2026-01-01 08:00:00Z', '2026-01-01 08:00:00Z', 'Volkswagen',
+        'Golf GTI', 2021,
+        'WOB-VW12', 'Tornado Red', 10, 10, 20),
+       ('b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e', '2026-01-01 09:00:00Z', '2026-01-01 09:00:00Z', 'BMW', '320d', 2022,
+        'M-XY-554', 'Jet Black', 10, 20, 10),
+       ('c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f', '2026-01-02 10:30:00Z', '2026-01-02 10:30:00Z', 'Toyota', 'Prius', 2023,
+        '7HBY-990', 'Pearl White', 20, 10, 10),
+       ('d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a', '2026-01-03 12:45:00Z', '2026-01-03 12:45:00Z', 'Volkswagen', 'ID.4',
+        2024,
+        'WOB-ID40', 'Blue Dusk', 30, 30, 10),
+       ('e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b', '2026-01-04 15:20:00Z', '2026-01-04 15:20:00Z', 'Honda', 'Civic', 2022,
+        'HND-2022', 'Modern Steel', 10, 10, 10);
 
 INSERT INTO instructors (uuid, created_at, edited_at, profile_uuid)
 VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', '2026-01-05 10:00:00Z', '2026-01-05 10:00:00Z',

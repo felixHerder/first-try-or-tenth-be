@@ -4,6 +4,9 @@ import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.instructors.InstructorDO;
 import com.felixherder.ftotbe.sessions.SessionDO;
 import com.felixherder.ftotbe.trainees.TraineeDO;
+import com.felixherder.ftotbe.vehicles.enums.EngineType;
+import com.felixherder.ftotbe.vehicles.enums.FuelType;
+import com.felixherder.ftotbe.vehicles.enums.TransmissionType;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,13 +39,13 @@ public class VehicleDO extends BaseDO {
     private String color;
 
     @Column(nullable = false)
-    private int engineTypeId;
+    private EngineType engineType;
 
     @Column(nullable = false)
-    private int fuelTypeId;
+    private FuelType fuelType;
 
     @Column(nullable = false)
-    private int transmissionTypeId;
+    private TransmissionType transmissionType;
 
     private String imageUrl;
 
