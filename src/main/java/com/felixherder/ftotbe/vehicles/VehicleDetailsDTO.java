@@ -8,6 +8,7 @@ import com.felixherder.ftotbe.vehicles.enums.EngineType;
 import com.felixherder.ftotbe.vehicles.enums.FuelType;
 import com.felixherder.ftotbe.vehicles.enums.TransmissionType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
@@ -24,7 +25,7 @@ public record VehicleDetailsDTO(
         @NotBlank(message = "Make is required!")
         String make,
 
-        @NotBlank(message = "Year is required!")
+        @NotNull(message = "Year is required!")
         @PastOrPresent(message = "Year cannot be in the future!")
         Year year,
 
@@ -35,13 +36,13 @@ public record VehicleDetailsDTO(
         @NotBlank(message = "Color is required!")
         String color,
 
-        @NotBlank(message = "Engine type is required!")
+        @NotNull(message = "Engine type is required!")
         EngineType engineType,
 
-        @NotBlank(message = "Fuel type is required!")
+        @NotNull(message = "Fuel type is required!")
         FuelType fuelType,
 
-        @NotBlank(message = "Transmission Type is required!")
+        @NotNull(message = "Transmission Type is required!")
         TransmissionType transmissionType,
 
         @JsonProperty(access = JsonProperty.Access.READ_ONLY)

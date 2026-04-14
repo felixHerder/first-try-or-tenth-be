@@ -30,4 +30,10 @@ public class VehicleServiceImpl implements VehicleService {
                 .map(vehicleMapper::toDetailsDto)
                 .orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
     }
+
+    @Override
+    public VehicleDetailsDTO createVehicle(VehicleDetailsDTO vehicleDetailsDTO) {
+        var savedVehicleDO = vehicleRepository.save(vehicleMapper.toDO(vehicleDetailsDTO));
+        return vehicleMapper.toDetailsDto(savedVehicleDO);
+    }
 }

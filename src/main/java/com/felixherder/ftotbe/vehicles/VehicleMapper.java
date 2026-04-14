@@ -5,6 +5,9 @@ import org.mapstruct.NullValueMappingStrategy;
 
 @Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface VehicleMapper {
-    VehicleSummaryDTO toSummaryDto (final VehicleDO vehicleDO);
-    VehicleDetailsDTO toDetailsDto (final VehicleDO vehicleDO);
+    VehicleSummaryDTO toSummaryDto(final VehicleDO vehicleDO);
+
+    VehicleDetailsDTO toDetailsDto(final VehicleDO vehicleDO);
+
+    VehicleDO toDO(final VehicleDetailsDTO vehicleDetailsDTO);
 }
