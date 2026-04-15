@@ -8,7 +8,7 @@
         <version>4.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>felix.herder</groupId>
+    <groupId>felixherder</groupId>
     <artifactId>first-try-or-tenth-be</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>first-try-or-tenth-be</name>
@@ -115,5 +115,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
