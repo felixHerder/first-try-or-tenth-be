@@ -1,12 +1,15 @@
 package com.felixherder.ftotbe.instructors;
 
+import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.profiles.ProfileDO;
 import com.felixherder.ftotbe.sessions.SessionDO;
-import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.trainees.TraineeDO;
 import com.felixherder.ftotbe.vehicles.VehicleDO;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -23,17 +26,17 @@ public class InstructorDO extends BaseDO {
     @JoinColumn(name = "profile_uuid")
     private ProfileDO profile;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "instructors_vehicles",
             joinColumns = @JoinColumn(name = "instructor_uuid"),
             inverseJoinColumns = @JoinColumn(name = "vehicle_uuid")
     )
-    private final Set<VehicleDO> vehicles = new LinkedHashSet<>();
+    private Set<VehicleDO> vehicles = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "instructor")
-    private final Set<TraineeDO> trainees = new LinkedHashSet<>();
+    private Set<TraineeDO> trainees = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "instructor")
-    private final Set<SessionDO> sessions = new LinkedHashSet<>();
+    private Set<SessionDO> sessions = new LinkedHashSet<>();
 }
