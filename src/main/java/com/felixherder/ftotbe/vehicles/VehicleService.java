@@ -18,4 +18,6 @@ public interface VehicleService {
     VehicleDetailsDTO updateVehicleTrainees(String uuid, @Valid List<String> traineeUuids);
 
     VehicleDetailsDTO updateVehicleSessions(String uuid, List<String> sessionUuids);
+
+    void deleteSession(String uuid);
 }

@@ -97,4 +97,9 @@ public class VehicleServiceImpl implements VehicleService {
             return vehicleMapper.toDetailsDto(savedVehicleDO);
         }).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found"));
     }
+
+    @Override
+    public void deleteSession(String uuid) {
+        vehicleRepository.deleteById(uuid);
+    }
 }

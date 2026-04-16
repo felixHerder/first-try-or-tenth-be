@@ -60,13 +60,19 @@ public class VehicleDO extends BaseDO {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<TraineeDO> trainees = new LinkedHashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicle", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    @PreRemove
+    private void preRemove() {
+        trainees.forEach(traineeDO -> traineeDO.setVehicle(null));
+        sessions.forEach(sessionDO -> sessionDO.setVehicle(null));
+    }
 
     public void addInstructor(InstructorDO instructorDO) {
         instructors.add(instructorDO);

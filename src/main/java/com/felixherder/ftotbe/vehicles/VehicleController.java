@@ -52,4 +52,10 @@ public class VehicleController {
     public VehicleDetailsDTO updateVehicleSessions(@PathVariable String uuid, @Valid @RequestBody final List<String> sessionUuids) {
         return vehicleService.updateVehicleSessions(uuid, sessionUuids);
     }
+
+    @DeleteMapping("/{uuid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteVehicle(@PathVariable String uuid) {
+        vehicleService.deleteSession(uuid);
+    }
 }
