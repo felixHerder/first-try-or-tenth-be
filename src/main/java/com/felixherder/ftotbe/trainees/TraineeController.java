@@ -64,4 +64,10 @@ public class TraineeController {
         return traineeService.updateTraineeSessions(uuid, sessionUuids);
     }
 
+    @DeleteMapping("/{uuid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTrainee(@PathVariable String uuid) {
+        traineeService.deleteSession(uuid);
+    }
+
 }

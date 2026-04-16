@@ -16,4 +16,6 @@ public interface TraineeService {
     TraineeDetailsDTO updateTraineeInstructor(String uuid, String instructorUuid);
 
     TraineeDetailsDTO updateTraineeSessions(String uuid, List<String> sessionUuids);
+
+    void deleteSession(String uuid);
 }

@@ -92,4 +92,9 @@ public class TraineeServiceImpl implements TraineeService {
             return traineeMapper.toDetailsDto(savedTraineeDO);
         }).orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
+
+    @Override
+    public void deleteSession(String uuid) {
+        traineeRepository.deleteById(uuid);
+    }
 }

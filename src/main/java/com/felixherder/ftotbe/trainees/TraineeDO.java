@@ -36,8 +36,13 @@ public class TraineeDO extends BaseDO {
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleDO vehicle;
 
-    @OneToMany(mappedBy = "trainee", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trainee", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    @PreRemove
+    private void preRemove() {
+        sessions.forEach(sessionDO -> sessionDO.setTrainee(null));
+    }
 
     public void addSession(SessionDO sessionDO) {
         sessions.add(sessionDO);
