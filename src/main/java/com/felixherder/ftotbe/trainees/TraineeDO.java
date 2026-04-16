@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -19,6 +21,8 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity(name = "trainees")
+@SQLDelete(sql = "UPDATE trainees SET deleted = true WHERE uuid=?")
+@SQLRestriction("deleted = false")
 public class TraineeDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include

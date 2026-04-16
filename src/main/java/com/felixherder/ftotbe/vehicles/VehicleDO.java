@@ -12,6 +12,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.Year;
 import java.util.LinkedHashSet;
@@ -22,6 +24,8 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity(name = "vehicles")
+@SQLDelete(sql = "UPDATE vehicles SET deleted = true WHERE uuid=?")
+@SQLRestriction("deleted = false")
 public class VehicleDO extends BaseDO {
     @Column(nullable = false)
     private String model;

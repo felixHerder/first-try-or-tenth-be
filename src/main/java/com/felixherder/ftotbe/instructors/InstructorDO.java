@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -19,6 +21,8 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity(name = "instructors")
+@SQLDelete(sql = "UPDATE instructors SET deleted = true WHERE uuid=?")
+@SQLRestriction("deleted = false")
 public class InstructorDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include
@@ -34,11 +38,17 @@ public class InstructorDO extends BaseDO {
     )
     private Set<VehicleDO> vehicles = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<TraineeDO> trainees = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    @PreRemove
+    private void preRemove() {
+        trainees.forEach(traineeDO -> traineeDO.setInstructor(null));
+        sessions.forEach(sessionDO -> sessionDO.setInstructor(null));
+    }
 
     public void addVehicle(VehicleDO vehicleDO) {
         vehicles.add(vehicleDO);

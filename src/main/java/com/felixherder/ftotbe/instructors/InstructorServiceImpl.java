@@ -102,4 +102,9 @@ public class InstructorServiceImpl implements InstructorService {
                 })
                 .orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
+
+    @Override
+    public void deleteSession(String uuid) {
+        instructorRepository.deleteById(uuid);
+    }
 }

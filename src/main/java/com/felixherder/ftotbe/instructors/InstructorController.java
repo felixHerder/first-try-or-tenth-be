@@ -62,4 +62,10 @@ public class InstructorController {
                                                          @RequestBody List<String> sessionUuids) {
         return instructorService.updateInstructorSessions(uuid, sessionUuids);
     }
+
+    @DeleteMapping("/{uuid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSession(@PathVariable String uuid) {
+        instructorService.deleteSession(uuid);
+    }
 }
