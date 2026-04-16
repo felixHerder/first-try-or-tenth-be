@@ -3,16 +3,23 @@ package com.felixherder.ftotbe.users;
 import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.profiles.ProfileDO;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity(name = "users")
-public class UsersDO extends BaseDO {
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE uuid=?")
+@SQLRestriction("deleted = false")
+public class UserDO extends BaseDO {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="profile_uuid")
+    @JoinColumn(name = "profile_uuid")
     private ProfileDO profile;
 
     @Column(nullable = false)
