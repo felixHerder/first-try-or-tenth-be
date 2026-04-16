@@ -38,4 +38,11 @@ public class SessionController {
         return sessionService.editSession(uuid, sessionEditDTO);
     }
 
+    @DeleteMapping("/{uuid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSession(@PathVariable String uuid) {
+        sessionService.deleteSession(uuid);
+    }
+
+
 }

@@ -62,6 +62,11 @@ public class SessionServiceImpl implements SessionService {
                 .orElseThrow(() -> new NotFoundException("Session with uuid: " + uuid + " not found!"));
     }
 
+    @Override
+    public void deleteSession(String uuid) {
+        sessionRepository.deleteById(uuid);
+    }
+
     private void findSetObjectsByUuid(SessionDO sessionDO, String vehicleUuid, String instructorUuid, String traineeUuid) {
         if (vehicleUuid != null) {
             vehicleRepository.findById(vehicleUuid).ifPresentOrElse(sessionDO::setVehicle, () -> {

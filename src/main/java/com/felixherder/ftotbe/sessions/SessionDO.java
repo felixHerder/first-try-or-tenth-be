@@ -12,6 +12,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.ZonedDateTime;
 
@@ -20,6 +22,8 @@ import java.time.ZonedDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(onlyExplicitlyIncluded = true, callSuper = true)
 @Entity(name = "sessions")
+@SQLDelete(sql = "UPDATE sessions SET deleted = true WHERE uuid=?")
+@SQLRestriction("deleted = false")
 public class SessionDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include

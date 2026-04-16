@@ -11,7 +11,7 @@ import java.time.Instant;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseDO {
+public abstract class BaseDO {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String uuid;
@@ -23,4 +23,6 @@ public class BaseDO {
     @LastModifiedDate
     @Column(nullable = false)
     private Instant editedAt;
+
+    private boolean deleted = false;
 }

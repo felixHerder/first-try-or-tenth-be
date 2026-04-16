@@ -10,4 +10,6 @@ public interface SessionService {
     SessionDetailsDTO createSession(SessionCreateDTO sessionCreateDTO);
 
     SessionDetailsDTO editSession(String uuid, SessionEditDTO sessionEditDTO);
+
+    void deleteSession(String uuid);
 }
