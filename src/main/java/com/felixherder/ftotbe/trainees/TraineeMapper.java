@@ -1,8 +1,10 @@
 package com.felixherder.ftotbe.trainees;
 
+import com.felixherder.ftotbe.sessions.SessionMapper;
 import org.mapstruct.*;
 
-@Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+@Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
+        uses = SessionMapper.class)
 public interface TraineeMapper {
     TraineeSummaryDTO toSummaryDto(TraineeDO traineeDO);
 

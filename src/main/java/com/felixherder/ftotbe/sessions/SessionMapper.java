@@ -12,12 +12,12 @@ public interface SessionMapper {
     @Mapping(target = "vehicleOutline", source = "vehicle")
     SessionSummaryDTO toSummaryDto(SessionDO sessionDO);
 
+    SessionDetailsDTO toDetailsDto(SessionDO sessionDO);
+
     default String mapVehicle(VehicleDO vehicleDO) {
         if (vehicleDO == null) return null;
         return vehicleDO.getMake() + " "
                 + vehicleDO.getModel() + " "
                 + vehicleDO.getYear();
     }
-
-    SessionDetailsDTO toDetailsDto(SessionDO sessionDO);
 }
