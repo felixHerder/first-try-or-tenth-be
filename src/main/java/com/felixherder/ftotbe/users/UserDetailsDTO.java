@@ -5,6 +5,7 @@ import com.felixherder.ftotbe.profiles.ProfileDTO;
 public record UserDetailsDTO(
         String uuid,
         ProfileDTO profile,
-        String username
+        String username,
+        String role
 ) {
 }

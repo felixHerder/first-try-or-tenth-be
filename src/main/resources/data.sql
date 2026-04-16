@@ -8,7 +8,9 @@ VALUES ('58217387-9b24-4f51-8742-19e342790100', '2026-01-05 09:15:22Z', '2026-01
        ('22334455-6677-8899-aabb-ccddeeff0011', '2026-01-15 11:30:45Z', '2026-01-15 11:30:45Z', 'Emma Wilson',
         '555-0466', '404 Skyline Blvd', 'http://img.local/p4.png', false),
        ('ffeeddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Lucas Hedges',
-        '555-0555', '505 Meadow Ln', 'http://img.local/p5.png', false);
+        '555-0555', '505 Meadow Ln', 'http://img.local/p5.png', false),
+       ('gghhddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Bob Admin',
+        '999-0555', 'Town center 23', null, false);
 
 INSERT INTO vehicles (uuid, created_at, edited_at, make, model, year, license_plate, color, engine_type,
                       fuel_type, transmission_type, deleted)
@@ -59,3 +61,8 @@ VALUES ('66ff7788-9900-aa11-bb22-cc33dd44ee55', '2026-02-01 08:30:00Z', '2026-02
        ('889900aa-11bb-22cc-33dd-44ee55ff6677', '2026-02-03 15:45:00Z', '2026-02-03 15:45:00Z', '2026-04-12 10:30:00Z',
         '55ee66ff-7788-9900-aa11-bb22cc33dd44', '22bb33cc-44dd-55ee-66ff-77889900aa11',
         'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e', false);
+
+INSERT INTO users (uuid, created_at, edited_at, profile_uuid, username, password, role, deleted)
+VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', '2026-02-01 08:30:00Z', '2026-02-01 08:30:00Z',
+        'gghhddcc-bbaa-9988-7766-554433221100',
+        'admin', '$2y$10$C/yCicPeAwho73Ov8N05v.peXu6qV7jmzhtqFqMIM05MDuPrdak1K', 'ROLE_ADMIN', false);
