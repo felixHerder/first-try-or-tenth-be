@@ -20,7 +20,11 @@ public class VehicleServiceImpl implements VehicleService {
     private final VehicleMapper vehicleMapper;
 
     @Autowired
-    public VehicleServiceImpl(VehicleRepository vehicleRepository, InstructorRepository instructorRepository, TraineeRepository traineeRepository, SessionRepository sessionRepository, VehicleMapper vehicleMapper) {
+    public VehicleServiceImpl(VehicleRepository vehicleRepository,
+                              InstructorRepository instructorRepository,
+                              TraineeRepository traineeRepository,
+                              SessionRepository sessionRepository,
+                              VehicleMapper vehicleMapper) {
         this.vehicleRepository = vehicleRepository;
         this.instructorRepository = instructorRepository;
         this.traineeRepository = traineeRepository;
@@ -36,9 +40,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDetailsDTO getByUuid(String uuid) {
-        return vehicleRepository.findById(uuid)
-                .map(vehicleMapper::toDetailsDto)
-                .orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
+        return vehicleRepository.findById(uuid).map(vehicleMapper::toDetailsDto).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
     }
 
     @Override
@@ -51,31 +53,35 @@ public class VehicleServiceImpl implements VehicleService {
     public VehicleDetailsDTO updateVehicleDetails(String uuid, VehicleDetailsDTO vehicleDetailsDTO) {
         var currentVehicle = vehicleRepository.findById(uuid);
         return currentVehicle.map(vehicleDO -> {
-                    vehicleMapper.updateDoFromDto(vehicleDetailsDTO, vehicleDO);
-                    vehicleDO.setUuid(uuid);
-                    return vehicleMapper.toDetailsDto(vehicleRepository.save(vehicleDO));
-                })
-                .orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
+            vehicleMapper.updateDoFromDto(vehicleDetailsDTO, vehicleDO);
+            vehicleRepository.save(vehicleDO);
+            return vehicleMapper.toDetailsDto(vehicleDO);
+        }).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
     }
 
     @Override
     public VehicleDetailsDTO updateVehicleInstructors(String uuid, List<String> instructorUuids) {
         var currentVehicle = vehicleRepository.findById(uuid);
         return currentVehicle.map(vehicleDO -> {
-                    var instructors = instructorRepository.findAllById(instructorUuids);
-                    vehicleDO.setInstructors(new LinkedHashSet<>(instructors));
-                    return vehicleMapper.toDetailsDto(vehicleRepository.save(vehicleDO));
-                })
-                .orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
+            var newInstructors = instructorRepository.findAllById(instructorUuids);
+            var oldInstructors = new LinkedHashSet<>(vehicleDO.getInstructors());
+            oldInstructors.forEach(vehicleDO::removeInstructor);
+            newInstructors.forEach(vehicleDO::addInstructor);
+            var savedVehicleDO = vehicleRepository.save(vehicleDO);
+            return vehicleMapper.toDetailsDto(savedVehicleDO);
+        }).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found!"));
     }
 
     @Override
     public VehicleDetailsDTO updateVehicleTrainees(String uuid, List<String> traineeUuids) {
         var currentVehicle = vehicleRepository.findById(uuid);
         return currentVehicle.map(vehicleDO -> {
-            var trainees = traineeRepository.findAllById(traineeUuids);
-            vehicleDO.setTrainees(new LinkedHashSet<>(trainees));
-            return vehicleMapper.toDetailsDto(vehicleDO);
+            var newTrainees = traineeRepository.findAllById(traineeUuids);
+            var oldTrainees = new LinkedHashSet<>(vehicleDO.getTrainees());
+            oldTrainees.forEach(vehicleDO::removeTrainee);
+            newTrainees.forEach(vehicleDO::addTrainee);
+            var savedVehicleDO = vehicleRepository.save(vehicleDO);
+            return vehicleMapper.toDetailsDto(savedVehicleDO);
         }).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found"));
     }
 
@@ -83,9 +89,12 @@ public class VehicleServiceImpl implements VehicleService {
     public VehicleDetailsDTO updateVehicleSessions(String uuid, List<String> sessionUuids) {
         var currentVehicle = vehicleRepository.findById(uuid);
         return currentVehicle.map(vehicleDO -> {
-            var sessions = sessionRepository.findAllById(sessionUuids);
-            vehicleDO.setSession(new LinkedHashSet<>(sessions));
-            return vehicleMapper.toDetailsDto(vehicleDO);
+            var newSessions = sessionRepository.findAllById(sessionUuids);
+            var oldSessions = new LinkedHashSet<>(vehicleDO.getSessions());
+            oldSessions.forEach(vehicleDO::removeSession);
+            newSessions.forEach(vehicleDO::addSession);
+            var savedVehicleDO = vehicleRepository.save(vehicleDO);
+            return vehicleMapper.toDetailsDto(savedVehicleDO);
         }).orElseThrow(() -> new NotFoundException("Vehicle with uuid: " + uuid + " not found"));
     }
 }

@@ -34,9 +34,39 @@ public class InstructorDO extends BaseDO {
     )
     private Set<VehicleDO> vehicles = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "instructor")
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private Set<TraineeDO> trainees = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "instructor")
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    public void addVehicle(VehicleDO vehicleDO) {
+        vehicles.add(vehicleDO);
+        vehicleDO.getInstructors().add(this);
+    }
+
+    public void removeVehicle(VehicleDO vehicleDO) {
+        vehicles.remove(vehicleDO);
+        vehicleDO.getInstructors().remove(this);
+    }
+
+    public void addTrainee(TraineeDO traineeDO) {
+        trainees.add(traineeDO);
+        traineeDO.setInstructor(this);
+    }
+
+    public void removeTrainee(TraineeDO traineeDO) {
+        trainees.remove(traineeDO);
+        traineeDO.setInstructor(null);
+    }
+
+    public void addSession(SessionDO sessionDO) {
+        sessions.add(sessionDO);
+        sessionDO.setInstructor(this);
+    }
+
+    public void removeSession(SessionDO sessionDO) {
+        sessions.remove(sessionDO);
+        sessionDO.setInstructor(null);
+    }
 }

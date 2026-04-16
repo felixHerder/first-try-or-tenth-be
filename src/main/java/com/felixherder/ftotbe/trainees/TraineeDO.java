@@ -1,12 +1,15 @@
 package com.felixherder.ftotbe.trainees;
 
+import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.instructors.InstructorDO;
 import com.felixherder.ftotbe.profiles.ProfileDO;
 import com.felixherder.ftotbe.sessions.SessionDO;
-import com.felixherder.ftotbe.common.BaseDO;
 import com.felixherder.ftotbe.vehicles.VehicleDO;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,7 +23,7 @@ public class TraineeDO extends BaseDO {
     @EqualsAndHashCode.Include
     @ToString.Include
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="profile_uuid")
+    @JoinColumn(name = "profile_uuid")
     private ProfileDO profile;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,7 +32,17 @@ public class TraineeDO extends BaseDO {
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleDO vehicle;
 
-    @OneToMany(mappedBy = "trainee")
-    private final Set<SessionDO> session = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "trainee", cascade = CascadeType.ALL)
+    private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    public void addSession(SessionDO sessionDO) {
+        sessions.add(sessionDO);
+        sessionDO.setTrainee(this);
+    }
+
+    public void removeSession(SessionDO sessionDO) {
+        sessions.remove(sessionDO);
+        sessionDO.setTrainee(null);
+    }
 }
 

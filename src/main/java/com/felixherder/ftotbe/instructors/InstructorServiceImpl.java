@@ -19,7 +19,11 @@ public class InstructorServiceImpl implements InstructorService {
     private final InstructorMapper instructorMapper;
 
     @Autowired
-    public InstructorServiceImpl(InstructorRepository instructorRepository, VehicleRepository vehicleRepository, TraineeRepository traineeRepository, SessionRepository sessionRepository, InstructorMapper instructorMapper) {
+    public InstructorServiceImpl(InstructorRepository instructorRepository,
+                                 VehicleRepository vehicleRepository,
+                                 TraineeRepository traineeRepository,
+                                 SessionRepository sessionRepository,
+                                 InstructorMapper instructorMapper) {
         this.instructorRepository = instructorRepository;
         this.vehicleRepository = vehicleRepository;
         this.traineeRepository = traineeRepository;
@@ -50,12 +54,9 @@ public class InstructorServiceImpl implements InstructorService {
     public InstructorDetailsDTO updateInstructorProfile(String uuid, InstructorDetailsDTO instructorDetailsDTO) {
         return instructorRepository.findById(uuid)
                 .map(instructorDO -> {
-                    String profileUuid = instructorDO.getProfile().getUuid();
                     instructorMapper.updateDoFromDto(instructorDetailsDTO, instructorDO);
-                    instructorDO.setUuid(uuid);
-                    instructorDO.getProfile().setUuid(profileUuid);
-                    instructorRepository.save(instructorDO);
-                    return instructorMapper.toDetailsDto(instructorDO);
+                    var savedInstructorDO = instructorRepository.save(instructorDO);
+                    return instructorMapper.toDetailsDto(savedInstructorDO);
                 })
                 .orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
@@ -64,9 +65,12 @@ public class InstructorServiceImpl implements InstructorService {
     public InstructorDetailsDTO updateInstructorVehicles(String uuid, List<String> vehicleUuids) {
         return instructorRepository.findById(uuid)
                 .map(instructorDO -> {
-                    var vehicles = vehicleRepository.findAllById(vehicleUuids);
-                    instructorDO.setVehicles(new LinkedHashSet<>(vehicles));
-                    return instructorMapper.toDetailsDto(instructorDO);
+                    var newVehicles = vehicleRepository.findAllById(vehicleUuids);
+                    var oldVehicles = new LinkedHashSet<>(instructorDO.getVehicles());
+                    oldVehicles.forEach(instructorDO::removeVehicle);
+                    newVehicles.forEach(instructorDO::addVehicle);
+                    var savedInstructorDO = instructorRepository.save(instructorDO);
+                    return instructorMapper.toDetailsDto(savedInstructorDO);
                 })
                 .orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
@@ -75,9 +79,12 @@ public class InstructorServiceImpl implements InstructorService {
     public InstructorDetailsDTO updateInstructorTrainees(String uuid, List<String> traineeUuids) {
         return instructorRepository.findById(uuid)
                 .map(instructorDO -> {
-                    var trainees = traineeRepository.findAllById(traineeUuids);
-                    instructorDO.setTrainees(new LinkedHashSet<>(trainees));
-                    return instructorMapper.toDetailsDto(instructorDO);
+                    var newTrainees = traineeRepository.findAllById(traineeUuids);
+                    var oldTrainees = new LinkedHashSet<>(instructorDO.getTrainees());
+                    oldTrainees.forEach(instructorDO::removeTrainee);
+                    newTrainees.forEach(instructorDO::addTrainee);
+                    var savedInstructorDO = instructorRepository.save(instructorDO);
+                    return instructorMapper.toDetailsDto(savedInstructorDO);
                 })
                 .orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }
@@ -86,9 +93,12 @@ public class InstructorServiceImpl implements InstructorService {
     public InstructorDetailsDTO updateInstructorSessions(String uuid, List<String> sessionUuids) {
         return instructorRepository.findById(uuid)
                 .map(instructorDO -> {
-                    var sessions = sessionRepository.findAllById(sessionUuids);
-                    instructorDO.setSessions(new LinkedHashSet<>(sessions));
-                    return instructorMapper.toDetailsDto(instructorDO);
+                    var newSessions = sessionRepository.findAllById(sessionUuids);
+                    var oldSessions = new LinkedHashSet<>(instructorDO.getSessions());
+                    oldSessions.forEach(instructorDO::removeSession);
+                    newSessions.forEach(instructorDO::addSession);
+                    var savedInstructorDO = instructorRepository.save(instructorDO);
+                    return instructorMapper.toDetailsDto(savedInstructorDO);
                 })
                 .orElseThrow(() -> new NotFoundException("Instructor with uuid: " + uuid + " not found!"));
     }

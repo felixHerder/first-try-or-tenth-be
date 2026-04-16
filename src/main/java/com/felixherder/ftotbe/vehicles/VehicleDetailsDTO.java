@@ -55,6 +55,6 @@ public record VehicleDetailsDTO(
         Set<TraineeSummaryDTO> trainees,
 
         @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-        Set<SessionSummaryDTO> session
+        Set<SessionSummaryDTO> sessions
 ) {
 }

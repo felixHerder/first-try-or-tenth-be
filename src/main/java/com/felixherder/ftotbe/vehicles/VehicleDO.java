@@ -56,12 +56,42 @@ public class VehicleDO extends BaseDO {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private Set<TraineeDO> trainees = new LinkedHashSet<>();
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(mappedBy = "vehicle")
-    private Set<SessionDO> session = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private Set<SessionDO> sessions = new LinkedHashSet<>();
+
+    public void addInstructor(InstructorDO instructorDO) {
+        instructors.add(instructorDO);
+        instructorDO.getVehicles().add(this);
+    }
+
+    public void removeInstructor(InstructorDO instructorDO) {
+        instructors.remove(instructorDO);
+        instructorDO.getVehicles().remove(this);
+    }
+
+    public void addTrainee(TraineeDO traineeDO) {
+        trainees.add(traineeDO);
+        traineeDO.setVehicle(this);
+    }
+
+    public void removeTrainee(TraineeDO traineeDO) {
+        trainees.remove(traineeDO);
+        traineeDO.setVehicle(null);
+    }
+
+    public void addSession(SessionDO sessionDO) {
+        sessions.add(sessionDO);
+        sessionDO.setVehicle(this);
+    }
+
+    public void removeSession(SessionDO sessionDO) {
+        sessions.remove(sessionDO);
+        sessionDO.setVehicle(null);
+    }
 
 }
