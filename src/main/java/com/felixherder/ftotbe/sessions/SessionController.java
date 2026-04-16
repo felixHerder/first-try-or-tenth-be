@@ -1,10 +1,9 @@
 package com.felixherder.ftotbe.sessions;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,17 @@ public class SessionController {
     @GetMapping("/{uuid}")
     public SessionDetailsDTO getDetails(@PathVariable String uuid) {
         return sessionService.getByUuid(uuid);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public SessionDetailsDTO createSession(@Valid @RequestBody SessionCreateDTO sessionCreateDTO) {
+        return sessionService.createSession(sessionCreateDTO);
+    }
+
+    @PatchMapping("/{uuid}")
+    public SessionDetailsDTO editSession(@PathVariable String uuid, @Valid @RequestBody SessionEditDTO sessionEditDTO) {
+        return sessionService.editSession(uuid, sessionEditDTO);
     }
 
 }

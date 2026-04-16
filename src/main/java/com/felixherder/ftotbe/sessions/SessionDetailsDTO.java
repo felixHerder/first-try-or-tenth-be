@@ -8,9 +8,13 @@ import java.time.ZonedDateTime;
 
 public record SessionDetailsDTO(
         String uuid,
+
         ZonedDateTime scheduledAt,
+
         TraineeSummaryDTO trainee,
+
         InstructorSummaryDTO instructor,
+
         VehicleSummaryDTO vehicle
 ) {
 }

@@ -1,9 +1,7 @@
 package com.felixherder.ftotbe.sessions;
 
 import com.felixherder.ftotbe.vehicles.VehicleDO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.NullValueMappingStrategy;
+import org.mapstruct.*;
 
 @Mapper(nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface SessionMapper {
@@ -13,6 +11,11 @@ public interface SessionMapper {
     SessionSummaryDTO toSummaryDto(SessionDO sessionDO);
 
     SessionDetailsDTO toDetailsDto(SessionDO sessionDO);
+
+    SessionDO toDO(SessionCreateDTO sessionCreateDTO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateDoFromDto(SessionEditDTO sessionEditDTO, @MappingTarget SessionDO sessionDO);
 
     default String mapVehicle(VehicleDO vehicleDO) {
         if (vehicleDO == null) return null;
