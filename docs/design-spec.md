@@ -45,15 +45,14 @@ An admin web application that allows users to handle everything related to a dri
 
 ### Users
 
-| Method | Endpoint                   | Description                  | 
-|--------|----------------------------|------------------------------|
-| GET    | /api/users                 | Get a list of all users      |
-| GET    | /api/users/{uuid}          | Get user account details     |
-| POST   | /api/users/register        | Register new user account    |
-| POST   | /api/users/login           | Log user in                  |
-| PUT    | /api/users/{uuid}          | Edit user account            |
-| PATCH  | /api/users/{uuid}/password | Change user account password |
-| DELETE | /api/users/{uuid}          | Delete user acount (soft)    |
+| Method | Endpoint            | Description               | 
+|--------|---------------------|---------------------------|
+| GET    | /api/users          | Get a list of all users   |
+| GET    | /api/users/{uuid}   | Get user account details  |
+| POST   | /api/users/register | Register new user account |
+| POST   | /api/users/login    | Log user in               |
+| PATCH  | /api/users/{uuid}   | Edit user account         |
+| DELETE | /api/users/{uuid}   | Delete user acount (soft) |
 
 ### Driving Instructors
 
@@ -61,7 +60,7 @@ An admin web application that allows users to handle everything related to a dri
 |--------|----------------------------------|------------------------------------------|
 | GET    | /api/instructors                 | Get a list of all driving instructors    |
 | GET    | /api/instructors/{uuid}          | Get driving instructor details           |
-| POST   | /api/instructors/new             | Create a new driving instructor profile  |
+| POST   | /api/instructors                 | Create a new driving instructor profile  |
 | PUT    | /api/instructors/{uuid}/profile  | Edit driving instructor profile          |
 | PATCH  | /api/instructors/{uuid}/vehicles | Edit assined vehicles                    |
 | PATCH  | /api/instructors/{uuid}/trainees | Edit assined trainees                    |
@@ -74,7 +73,7 @@ An admin web application that allows users to handle everything related to a dri
 |--------|----------------------------------|-------------------------------|
 | GET    | /api/vehicles                    | Get a list of all vehicles    |
 | GET    | /api/vehicles/{uuid}             | Get vehicle details           |
-| POST   | /api/vehicles/new                | Create a new vehicle          |
+| POST   | /api/vehicles                    | Create a new vehicle          |
 | PUT    | /api/vehicles/{uuid}             | Edit vehicle                  |
 | PATCH  | /api/vehicles/{uuid}/instructors | Edit assined instructors      |
 | PATCH  | /api/vehicles/{uuid}/trainees    | Edit assined trainees         |
@@ -87,7 +86,7 @@ An admin web application that allows users to handle everything related to a dri
 |--------|---------------------------------|-------------------------------|
 | GET    | /api/trainess                   | Get a list of all trainess    |
 | GET    | /api/trainess/{uuid}            | Get trainee details           |
-| POST   | /api/trainees/new               | Create a new trainee profile  |
+| POST   | /api/trainees                   | Create a new trainee profile  |
 | PUT    | /api/trainees/{uuid}/profile    | Edit trainee profile          |
 | PATCH  | /api/trainees/{uuid}/instructor | Edit assined instructor       |
 | PATCH  | /api/trainees/{uuid}/vehicle    | Edit assined vehicle          |
@@ -96,16 +95,13 @@ An admin web application that allows users to handle everything related to a dri
 
 ### Driving sessions
 
-| Method | Endpoint                        | Description                | 
-|--------|---------------------------------|----------------------------|
-| GET    | /api/sessions                   | Get a list of all sessions |
-| GET    | /api/sessions/{uuid}            | Get session details        |
-| POST   | /api/sessions/new               | Create a new session       |
-| PUT    | /api/sessions/{uuid}            | Edit session               |
-| PATCH  | /api/sessions/{uuid}/instructor | Edit assined instructor    |
-| PATCH  | /api/sessions/{uuid}/vehicle    | Edit assined vehicle       |
-| PATCH  | /api/sessions/{uuid}/trainee    | Edit assined trainee       |
-| DELETE | /api/sessions/{uuid}            | Delete session (soft)      |
+| Method | Endpoint             | Description                | 
+|--------|----------------------|----------------------------|
+| GET    | /api/sessions        | Get a list of all sessions |
+| GET    | /api/sessions/{uuid} | Get session details        |
+| POST   | /api/sessions        | Create a new session       |
+| PATCH  | /api/sessions/{uuid} | Edit session               | |
+| DELETE | /api/sessions/{uuid} | Delete session (soft)      |
 
 ## 5. User Interface Prototype
 
