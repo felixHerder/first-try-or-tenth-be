@@ -16,7 +16,7 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${AUTH_JWT_KEY}")
     private String SECRET_KEY;
-    @Value("${app.auth.jwt-expiration:36000}")
+    @Value("${app.auth.jwt-expiration:3600000}")
     private int jwtExpiration;
 
     private SecretKey getSigningKey() {
@@ -26,6 +26,7 @@ public class JwtService {
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
+                .claim("roles", userDetails.getAuthorities().toString())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(getSigningKey())

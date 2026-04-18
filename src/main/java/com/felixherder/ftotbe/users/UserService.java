@@ -12,4 +12,8 @@ public interface UserService extends UserDetailsService {
     UserDetailsDTO toDetailsDTO(UserDO userDO);
 
     UserDetailsDTO registerUser(UserRegisterDTO userRegisterDTO);
+
+    UserDetailsDTO editUser(String uuid, UserEditDTO userEditDTO);
+
+    void removeUser(String uuid);
 }

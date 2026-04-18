@@ -8,11 +8,11 @@ public record UserRegisterDTO(
         ProfileDTO profile,
 
         @NotBlank(message = "Username is required!")
-        @Size(min = 5, message = "Username should have at least 5 characters!")
+        @Size(min = 5, message = "Username must be at least 5 characters long!")
         String username,
 
         @NotBlank(message = "Password is required!")
-        @Size(min = 8, message = "Password should have at least 8 characters!")
+        @Size(min = 8, message = "Password must be at least 8 characters long!")
         String password,
 
         String role

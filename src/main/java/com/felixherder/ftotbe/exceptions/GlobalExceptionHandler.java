@@ -24,6 +24,17 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UsernameConflictException.class)
+    public ErrorResponse handleNotFoundException(final UsernameConflictException usernameConflictException) {
+        return ErrorResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .message(usernameConflictException.getMessage())
+                .errors(Map.of("exception", "Username already exists!"))
+                .timestamp(LocalDateTime.now().toString())
+                .build();
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleValidationExceptions(final MethodArgumentNotValidException notValidException) {

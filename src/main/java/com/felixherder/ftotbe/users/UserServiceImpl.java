@@ -1,6 +1,7 @@
 package com.felixherder.ftotbe.users;
 
 import com.felixherder.ftotbe.exceptions.NotFoundException;
+import com.felixherder.ftotbe.exceptions.UsernameConflictException;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,10 +49,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetailsDTO registerUser(UserRegisterDTO userRegisterDTO) {
+        userRepository.findByUsername(userRegisterDTO.username()).ifPresent((userDO) -> {
+            throw new UsernameConflictException("Username: " + userDO.getUsername() + " already exists");
+        });
         var userDO = userMapper.toDO(userRegisterDTO);
         userDO.setPassword(passwordEncoder.encode(userDO.getPassword()));
         userDO.setRole("ROLE_ADMIN");
         var savedUserDO = userRepository.save(userDO);
         return userMapper.toDetailsDTO(savedUserDO);
+    }
+
+    @Override
+    public UserDetailsDTO editUser(String uuid, UserEditDTO userEditDTO) {
+        return userRepository.findById(uuid).map(userDO -> {
+                    userMapper.updateDoFromDto(userEditDTO, userDO);
+                    userDO.setPassword(passwordEncoder.encode(userDO.getPassword()));
+                    var savedUserDO = userRepository.save(userDO);
+                    return userMapper.toDetailsDTO(savedUserDO);
+                })
+                .orElseThrow(() -> new NotFoundException("User with uuid: " + uuid + " not found!"));
+    }
+
+    @Override
+    public void removeUser(String uuid) {
+        userRepository.deleteById(uuid);
     }
 }

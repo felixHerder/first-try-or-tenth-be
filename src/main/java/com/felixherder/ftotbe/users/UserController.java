@@ -5,6 +5,7 @@ import com.felixherder.ftotbe.auth.AuthResponse;
 import com.felixherder.ftotbe.auth.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,19 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserDetailsDTO registerUser(@RequestBody @Valid UserRegisterDTO userRegisterDTO) {
         return userService.registerUser(userRegisterDTO);
+    }
+
+    @PatchMapping("/{uuid}")
+    public UserDetailsDTO editUser(@PathVariable String uuid, @RequestBody @Valid UserEditDTO userEditDTO) {
+        return userService.editUser(uuid, userEditDTO);
+    }
+
+    @DeleteMapping("/{uuid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeUser(@PathVariable String uuid) {
+        userService.removeUser(uuid);
     }
 }
