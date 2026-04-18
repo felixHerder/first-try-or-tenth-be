@@ -5,4 +5,6 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface UserMapper {
     UserDetailsDTO toDetailsDTO(UserDO userDO);
+
+    UserDO toDO(UserRegisterDTO userRegisterDTO);
 }

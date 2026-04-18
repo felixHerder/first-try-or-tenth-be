@@ -4,6 +4,7 @@ import com.felixherder.ftotbe.exceptions.NotFoundException;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +13,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -41,5 +44,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetailsDTO toDetailsDTO(UserDO userDO) {
         return userMapper.toDetailsDTO(userDO);
+    }
+
+    @Override
+    public UserDetailsDTO registerUser(UserRegisterDTO userRegisterDTO) {
+        var userDO = userMapper.toDO(userRegisterDTO);
+        userDO.setPassword(passwordEncoder.encode(userDO.getPassword()));
+        userDO.setRole("ROLE_ADMIN");
+        var savedUserDO = userRepository.save(userDO);
+        return userMapper.toDetailsDTO(savedUserDO);
     }
 }

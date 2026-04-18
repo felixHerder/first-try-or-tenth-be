@@ -62,6 +62,7 @@ VALUES ('66ff7788-9900-aa11-bb22-cc33dd44ee55', '2026-02-01 08:30:00Z', '2026-02
         '55ee66ff-7788-9900-aa11-bb22cc33dd44', '22bb33cc-44dd-55ee-66ff-77889900aa11',
         'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e', false);
 
+-- username: admin, password: admin
 INSERT INTO users (uuid, created_at, edited_at, profile_uuid, username, password, role, deleted)
 VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', '2026-02-01 08:30:00Z', '2026-02-01 08:30:00Z',
         'gghhddcc-bbaa-9988-7766-554433221100',

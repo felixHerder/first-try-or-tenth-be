@@ -48,4 +48,9 @@ public class UserController {
                 .userDetails(userService.toDetailsDTO((UserDO) userDetails))
                 .build();
     }
+
+    @PostMapping("/register")
+    public UserDetailsDTO registerUser(@RequestBody @Valid UserRegisterDTO userRegisterDTO) {
+        return userService.registerUser(userRegisterDTO);
+    }
 }

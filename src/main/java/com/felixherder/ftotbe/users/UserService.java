@@ -10,4 +10,6 @@ public interface UserService extends UserDetailsService {
     UserDetailsDTO getByUuid(String uuid);
 
     UserDetailsDTO toDetailsDTO(UserDO userDO);
+
+    UserDetailsDTO registerUser(UserRegisterDTO userRegisterDTO);
 }
