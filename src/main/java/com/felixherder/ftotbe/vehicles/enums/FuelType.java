@@ -2,8 +2,22 @@ package com.felixherder.ftotbe.vehicles.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.v3.oas.annotations.extensions.Extension;
+import io.swagger.v3.oas.annotations.extensions.ExtensionProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 
+@Schema(
+        extensions = {
+                @Extension(properties = {
+                        @ExtensionProperty(
+                                name = "x-enum-varnames",
+                                value = "[\"GASOLINE\", \"DIESEL\", \"ELECTRIC\"]",
+                                parseValue = true
+                        )
+                })
+        }
+)
 @RequiredArgsConstructor
 public enum FuelType {
     GASOLINE(10),
