@@ -11,10 +11,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
 import java.time.Year;
 import java.util.Set;
 
+@Builder
 public record VehicleDetailsDTO(
         @JsonProperty(access = JsonProperty.Access.READ_ONLY)
         String uuid,

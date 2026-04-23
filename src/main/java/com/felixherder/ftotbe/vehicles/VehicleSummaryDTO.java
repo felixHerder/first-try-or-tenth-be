@@ -2,10 +2,11 @@ package com.felixherder.ftotbe.vehicles;
 
 import com.felixherder.ftotbe.vehicles.enums.TransmissionType;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 import java.time.Year;
 
-
+@Builder
 public record VehicleSummaryDTO(
         @NotNull
         String uuid,
