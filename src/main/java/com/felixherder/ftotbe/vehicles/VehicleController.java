@@ -56,6 +56,6 @@ public class VehicleController {
     @DeleteMapping("/{uuid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteVehicle(@PathVariable String uuid) {
-        vehicleService.deleteSession(uuid);
+        vehicleService.deleteVehicle(uuid);
     }
 }

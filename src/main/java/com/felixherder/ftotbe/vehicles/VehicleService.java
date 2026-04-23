@@ -19,5 +19,5 @@ public interface VehicleService {
 
     VehicleDetailsDTO updateVehicleSessions(String uuid, List<String> sessionUuids);
 
-    void deleteSession(String uuid);
+    void deleteVehicle(String uuid);
 }

@@ -99,7 +99,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void deleteSession(String uuid) {
+    public void deleteVehicle(String uuid) {
         vehicleRepository.deleteById(uuid);
     }
 }
