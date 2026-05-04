@@ -10,7 +10,17 @@ VALUES ('58217387-9b24-4f51-8742-19e342790100', '2026-01-05 09:15:22Z', '2026-01
        ('ffeeddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Lucas Hedges',
         '555-0555', '505 Meadow Ln', 'http://img.local/p5.png', false),
        ('gghhddcc-bbaa-9988-7766-554433221100', '2026-01-20 16:45:30Z', '2026-01-20 16:45:30Z', 'Bob Admin',
-        '999-0555', 'Town center 23', null, false);
+        '999-0555', 'Town center 23', null, false),
+       ('a0112233-4455-6677-8899-00aabbccdd11', '2026-05-04 10:00:00Z', '2026-05-04 10:00:00Z', 'Sophia Martinez',
+        '555-0611', '606 Oak St', 'http://img.local/p6.png', false),
+       ('b0112233-4455-6677-8899-00aabbccdd22', '2026-05-04 10:05:00Z', '2026-05-04 10:05:00Z', 'James Taylor',
+        '555-0722', '707 Pine Ln', 'http://img.local/p7.png', false),
+       ('c0112233-4455-6677-8899-00aabbccdd33', '2026-05-04 10:10:00Z', '2026-05-04 10:10:00Z', 'Linda Moore',
+        '555-0833', '808 Birch Rd', 'http://img.local/p8.png', false),
+       ('d0112233-4455-6677-8899-00aabbccdd44', '2026-05-04 10:15:00Z', '2026-05-04 10:15:00Z', 'Michael Brown',
+        '555-0944', '909 Cedar Ave', 'http://img.local/p9.png', false),
+       ('e0112233-4455-6677-8899-00aabbccdd55', '2026-05-04 10:20:00Z', '2026-05-04 10:20:00Z', 'Isabella Garcia',
+        '555-1055', '111 Walnut Ct', 'http://img.local/p10.png', false);
 
 INSERT INTO vehicles (uuid, created_at, edited_at, make, model, year, license_plate, color, engine_type,
                       fuel_type, transmission_type, deleted)
@@ -31,14 +41,28 @@ INSERT INTO instructors (uuid, created_at, edited_at, profile_uuid, deleted)
 VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', '2026-01-05 10:00:00Z', '2026-01-05 10:00:00Z',
         '58217387-9b24-4f51-8742-19e342790100', false),
        ('22bb33cc-44dd-55ee-66ff-77889900aa11', '2026-01-06 11:00:00Z', '2026-01-06 11:00:00Z',
-        '9d3e8612-429a-4e2a-9f8a-552319283741', false);
+        '9d3e8612-429a-4e2a-9f8a-552319283741', false),
+       ('33cc44dd-1111-2222-3333-444455556666', '2026-05-04 11:00:00Z', '2026-05-04 11:00:00Z',
+        'a0112233-4455-6677-8899-00aabbccdd11', false),
+       ('44dd55ee-2222-3333-4444-555566667777', '2026-05-04 11:05:00Z', '2026-05-04 11:05:00Z',
+        'b0112233-4455-6677-8899-00aabbccdd22', false),
+       ('55ee66ff-3333-4444-5555-666677778888', '2026-05-04 11:10:00Z', '2026-05-04 11:10:00Z',
+        'c0112233-4455-6677-8899-00aabbccdd33', false),
+       ('66ff7788-4444-5555-6666-777788889999', '2026-05-04 11:15:00Z', '2026-05-04 11:15:00Z',
+        'd0112233-4455-6677-8899-00aabbccdd44', false),
+       ('77889900-5555-6666-7777-888899990000', '2026-05-04 11:20:00Z', '2026-05-04 11:20:00Z',
+        'e0112233-4455-6677-8899-00aabbccdd55', false);
 
 INSERT INTO instructors_vehicles (instructor_uuid, vehicle_uuid)
-VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900',
-        'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
-       ('11aa22bb-33cc-44dd-55ee-66ff77889900',
-        'd4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a'),
+VALUES ('11aa22bb-33cc-44dd-55ee-66ff77889900', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('22bb33cc-44dd-55ee-66ff-77889900aa11', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('33cc44dd-1111-2222-3333-444455556666', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('44dd55ee-2222-3333-4444-555566667777', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('55ee66ff-3333-4444-5555-666677778888', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('66ff7788-4444-5555-6666-777788889999', 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d'),
+       ('11aa22bb-33cc-44dd-55ee-66ff77889900', 'd4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a'),
        ('22bb33cc-44dd-55ee-66ff-77889900aa11', 'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e');
+
 
 INSERT INTO trainees (uuid, created_at, edited_at, profile_uuid, instructor_uuid, vehicle_uuid, deleted)
 VALUES ('33cc44dd-55ee-66ff-7788-9900aa11bb22', '2026-01-11 09:00:00Z', '2026-01-11 09:00:00Z',
