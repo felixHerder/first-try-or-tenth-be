@@ -23,7 +23,7 @@ public class VehicleController {
     }
 
     @GetMapping("/{uuid}")
-    public VehicleDetailsDTO getById(@PathVariable String uuid) {
+    public VehicleDetailsDTO getByUuid(@PathVariable String uuid) {
         return vehicleService.getByUuid(uuid);
     }
 

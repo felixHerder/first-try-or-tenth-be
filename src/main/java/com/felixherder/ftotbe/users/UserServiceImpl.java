@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @NonNull
     public UserDetails loadUserByUsername(@NonNull String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new NotFoundException("User with username: " + username + " not found!"));
+                .orElseThrow(() -> new UsernameConflictException("User with username: " + username + " not found!"));
     }
 
     @Override

@@ -46,8 +46,7 @@ public record VehicleDetailsDTO(
 
         @NotNull(message = "Transmission Type is required!")
         TransmissionType transmissionType,
-
-        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+        
         String imageUrl,
 
         @JsonProperty(access = JsonProperty.Access.READ_ONLY)

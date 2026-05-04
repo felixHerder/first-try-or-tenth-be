@@ -24,13 +24,11 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UsernameConflictException.class)
-    public ErrorResponse handleNotFoundException(final UsernameConflictException usernameConflictException) {
+    public ErrorResponse handleUsernameConflictException(final UsernameConflictException usernameConflictException) {
         return ErrorResponse.builder()
-                .status(HttpStatus.CONFLICT.value())
-                .message(usernameConflictException.getMessage())
-                .errors(Map.of("exception", "Username already exists!"))
+                .status(HttpStatus.UNAUTHORIZED.value())
                 .timestamp(LocalDateTime.now().toString())
                 .build();
     }

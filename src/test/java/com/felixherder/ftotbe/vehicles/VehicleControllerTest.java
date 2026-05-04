@@ -84,7 +84,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void getById_Success() throws Exception {
+    void getByUuid_Success() throws Exception {
         when(vehicleService.getByUuid(uuid)).thenReturn(vehicleDetailsDTO);
 
         mockMvc.perform(get("/api/v1/vehicles/{uuid}", uuid))
@@ -94,7 +94,7 @@ class VehicleControllerTest {
     }
 
     @Test
-    void getById_NotFound() throws Exception {
+    void getByUuid_NotFound() throws Exception {
         when(vehicleService.getByUuid(uuid)).thenThrow(new NotFoundException("Vehicle not found"));
 
         mockMvc.perform(get("/api/v1/vehicles/{uuid}", uuid))
