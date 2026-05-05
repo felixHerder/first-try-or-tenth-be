@@ -1,5 +1,6 @@
 package com.felixherder.ftotbe.instructors;
 
+import com.felixherder.ftotbe.profiles.ProfileDTO;
 import com.felixherder.ftotbe.sessions.SessionMapper;
 import org.mapstruct.*;
 
@@ -14,4 +15,9 @@ public interface InstructorMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateDoFromDto(InstructorDetailsDTO instructorDetailsDTO, @MappingTarget InstructorDO instructorDO);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = ".", target = "profile")
+    void updateDoFromProfileDto(ProfileDTO profileDto, @MappingTarget InstructorDO instructorDO);
 }
+

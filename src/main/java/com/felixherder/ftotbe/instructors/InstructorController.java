@@ -1,5 +1,6 @@
 package com.felixherder.ftotbe.instructors;
 
+import com.felixherder.ftotbe.profiles.ProfileDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
@@ -35,8 +36,8 @@ public class InstructorController {
 
     @PutMapping("/{uuid}/profile")
     public InstructorDetailsDTO updateInstructorProfile(@PathVariable String uuid,
-                                                        @Valid @RequestBody InstructorDetailsDTO instructorDetailsDTO) {
-        return instructorService.updateInstructorProfile(uuid, instructorDetailsDTO);
+                                                        @Valid @RequestBody ProfileDTO profileDto) {
+        return instructorService.updateInstructorProfile(uuid, profileDto);
     }
 
     @PatchMapping("/{uuid}/vehicles")

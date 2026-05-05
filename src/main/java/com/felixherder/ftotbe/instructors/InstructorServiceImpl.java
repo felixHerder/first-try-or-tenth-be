@@ -1,6 +1,7 @@
 package com.felixherder.ftotbe.instructors;
 
 import com.felixherder.ftotbe.exceptions.NotFoundException;
+import com.felixherder.ftotbe.profiles.ProfileDTO;
 import com.felixherder.ftotbe.sessions.SessionRepository;
 import com.felixherder.ftotbe.trainees.TraineeRepository;
 import com.felixherder.ftotbe.vehicles.VehicleRepository;
@@ -51,10 +52,10 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public InstructorDetailsDTO updateInstructorProfile(String uuid, InstructorDetailsDTO instructorDetailsDTO) {
+    public InstructorDetailsDTO updateInstructorProfile(String uuid, ProfileDTO profileDto) {
         return instructorRepository.findById(uuid)
                 .map(instructorDO -> {
-                    instructorMapper.updateDoFromDto(instructorDetailsDTO, instructorDO);
+                    instructorMapper.updateDoFromProfileDto(profileDto, instructorDO);
                     var savedInstructorDO = instructorRepository.save(instructorDO);
                     return instructorMapper.toDetailsDto(savedInstructorDO);
                 })

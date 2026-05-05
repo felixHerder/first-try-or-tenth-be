@@ -114,11 +114,11 @@ class InstructorServiceImplTest {
         when(instructorRepository.save(instructorDO)).thenReturn(instructorDO);
         when(instructorMapper.toDetailsDto(instructorDO)).thenReturn(instructorDetailsDTO);
 
-        InstructorDetailsDTO result = instructorService.updateInstructorProfile(uuid, instructorDetailsDTO);
+        InstructorDetailsDTO result = instructorService.updateInstructorProfile(uuid, instructorDetailsDTO.profile());
 
         assertNotNull(result);
         assertEquals(uuid, result.uuid());
-        verify(instructorMapper).updateDoFromDto(instructorDetailsDTO, instructorDO);
+        verify(instructorMapper).updateDoFromProfileDto(instructorDetailsDTO.profile(), instructorDO);
         verify(instructorRepository).save(instructorDO);
     }
 

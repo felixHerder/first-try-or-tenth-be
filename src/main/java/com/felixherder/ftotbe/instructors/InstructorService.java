@@ -1,6 +1,9 @@
 package com.felixherder.ftotbe.instructors;
 
 
+import com.felixherder.ftotbe.profiles.ProfileDTO;
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 public interface InstructorService {
@@ -10,7 +13,7 @@ public interface InstructorService {
 
     InstructorDetailsDTO createInstructor(InstructorDetailsDTO instructorDetailsDTO);
 
-    InstructorDetailsDTO updateInstructorProfile(String uuid, InstructorDetailsDTO instructorDetailsDTO);
+    InstructorDetailsDTO updateInstructorProfile(String uuid, @Valid ProfileDTO instructorDetailsDTO);
 
     InstructorDetailsDTO updateInstructorVehicles(String uuid, List<String> vehicleUuids);
 

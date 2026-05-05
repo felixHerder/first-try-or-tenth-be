@@ -108,11 +108,11 @@ class InstructorControllerTest {
 
     @Test
     void updateInstructorProfile_Success() throws Exception {
-        when(instructorService.updateInstructorProfile(eq(uuid), any(InstructorDetailsDTO.class))).thenReturn(instructorDetailsDTO);
+        when(instructorService.updateInstructorProfile(eq(uuid), any(ProfileDTO.class))).thenReturn(instructorDetailsDTO);
 
         mockMvc.perform(put("/api/v1/instructors/{uuid}/profile", uuid)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(instructorDetailsDTO)))
+                        .content(objectMapper.writeValueAsString(instructorDetailsDTO.profile())))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.uuid").value(uuid));
     }
