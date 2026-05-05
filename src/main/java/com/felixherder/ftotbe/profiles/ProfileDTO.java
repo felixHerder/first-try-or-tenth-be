@@ -9,6 +9,7 @@ public record ProfileDTO(
         String uuid,
 
         @NotBlank(message = "Name is required!")
+        @Size(min = 3, message = "Name must be at least 3 characters long!")
         String name,
 
         @NotBlank(message = "Phone number is required!")
