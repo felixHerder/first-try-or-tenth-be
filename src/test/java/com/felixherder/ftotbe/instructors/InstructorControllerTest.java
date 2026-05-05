@@ -151,7 +151,7 @@ class InstructorControllerTest {
     }
 
     @Test
-    void deleteSession_Success() throws Exception {
+    void deleteInstructor_Success() throws Exception {
         mockMvc.perform(delete("/api/v1/instructors/{uuid}", uuid))
                 .andExpect(status().isNoContent());
     }

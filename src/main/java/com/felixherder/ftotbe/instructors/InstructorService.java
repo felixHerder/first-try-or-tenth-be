@@ -21,5 +21,5 @@ public interface InstructorService {
 
     InstructorDetailsDTO updateInstructorSessions(String uuid, List<String> sessionUuids);
 
-    void deleteSession(String uuid);
+    void deleteInstructor(String uuid);
 }

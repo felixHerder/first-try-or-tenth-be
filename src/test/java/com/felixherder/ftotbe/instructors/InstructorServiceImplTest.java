@@ -178,10 +178,10 @@ class InstructorServiceImplTest {
     }
 
     @Test
-    void deleteSession_Success() {
+    void deleteInstructor_Success() {
         doNothing().when(instructorRepository).deleteById(uuid);
 
-        instructorService.deleteSession(uuid);
+        instructorService.deleteInstructor(uuid);
 
         verify(instructorRepository).deleteById(uuid);
     }

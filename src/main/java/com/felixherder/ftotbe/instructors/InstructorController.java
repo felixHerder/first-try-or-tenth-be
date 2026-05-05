@@ -66,7 +66,7 @@ public class InstructorController {
 
     @DeleteMapping("/{uuid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSession(@PathVariable String uuid) {
-        instructorService.deleteSession(uuid);
+    public void deleteInstructor(@PathVariable String uuid) {
+        instructorService.deleteInstructor(uuid);
     }
 }

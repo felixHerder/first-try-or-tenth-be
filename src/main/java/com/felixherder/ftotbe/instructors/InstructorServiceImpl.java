@@ -105,7 +105,7 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public void deleteSession(String uuid) {
+    public void deleteInstructor(String uuid) {
         instructorRepository.deleteById(uuid);
     }
 }
