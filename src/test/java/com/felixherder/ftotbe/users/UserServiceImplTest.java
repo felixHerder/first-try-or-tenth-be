@@ -102,7 +102,7 @@ class UserServiceImplTest {
     void loadUserByUsername_NotFound_ShouldThrowException() {
         when(userRepository.findByUsername(username)).thenReturn(Optional.empty());
 
-        assertThrows(NotFoundException.class, () -> userService.loadUserByUsername(username));
+        assertThrows(UsernameConflictException.class, () -> userService.loadUserByUsername(username));
     }
 
     @Test

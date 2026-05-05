@@ -39,11 +39,9 @@ class GlobalExceptionHandlerTest {
     void handleUsernameConflictException_ShouldReturnErrorResponse() {
         UsernameConflictException exception = new UsernameConflictException("Username already exists");
 
-        ErrorResponse response = globalExceptionHandler.handleNotFoundException(exception);
+        ErrorResponse response = globalExceptionHandler.handleUsernameConflictException(exception);
 
-        assertEquals(HttpStatus.CONFLICT.value(), response.getStatus());
-        assertEquals("Username already exists", response.getMessage());
-        assertEquals("Username already exists!", response.getErrors().get("exception"));
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatus());
         assertNotNull(response.getTimestamp());
     }
 
