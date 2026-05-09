@@ -22,7 +22,7 @@ services:
   nginx-proxy:
     image: nginx:latest
     ports:
-      - "420:80"
+      - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
