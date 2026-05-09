@@ -1,8 +1,30 @@
 services:
   db:
-    image: 'postgres'
-    container_name: ftot-psql-dev-db
+    image: postgres:15
+    env_file:
+      - .env
     environment:
-      - 'POSTGRES_PASSWORD=$DB_PASSWORD'
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+
+  backend:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+
+  frontend:
+    build: ../first-try-or-tenth-fe
+    restart: always
+
+  nginx-proxy:
+    image: nginx:latest
     ports:
-      - '5432:5432'
+      - "420:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - backend

@@ -2,11 +2,13 @@ package com.felixherder.ftotbe.users;
 
 import com.felixherder.ftotbe.profiles.ProfileDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record UserEditDTO(
         @Valid
+        @NotNull
         ProfileDTO profile,
 
         @Pattern(regexp = "^$|\\S+.*", message = "Username cannot be blank!")
