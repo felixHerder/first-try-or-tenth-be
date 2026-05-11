@@ -1,0 +1,19 @@
+package com.felixherder.ftotbe.users;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import java.util.List;
+
+public interface UserService extends UserDetailsService {
+    List<UserDetailsDTO> getAll();
+
+    UserDetailsDTO getByUuid(String uuid);
+
+    UserDetailsDTO toDetailsDTO(UserDO userDO);
+
+    UserDetailsDTO registerUser(UserRegisterDTO userRegisterDTO);
+
+    UserDetailsDTO editUser(String uuid, UserEditDTO userEditDTO);
+
+    void removeUser(String uuid);
+}
